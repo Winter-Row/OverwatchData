@@ -1,0 +1,7 @@
+.root{
+    -fx-font-size: 12pt;
+    -fx-background-color: #FF5252;
+}
+#header{
+    -fx-font-size: 30pt;
+}
