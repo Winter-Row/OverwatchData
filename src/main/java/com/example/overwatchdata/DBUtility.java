@@ -1,5 +1,9 @@
 package com.example.overwatchdata;
 
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
+import javafx.scene.chart.XYChart;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -41,5 +45,33 @@ public class DBUtility {
         }
 
         return hero;
+    }
+
+    public static XYChart.Series<String, Double> getWinRateByRank(){
+
+        XYChart.Series<String, Double> winRates = new XYChart.Series<>();
+        String sql = "SELECT Name, WinRate " +
+                "FROM Heros " +
+                "WHERE HeroRank = 'All' " +
+                "ORDER BY HeroID;";
+
+        try(
+                //connecting to DB
+                Connection conn = DriverManager.getConnection(connURL, user, pw);
+                Statement statement = conn.createStatement();
+                //executing sql statement
+                ResultSet resultSet = statement.executeQuery(sql)
+        ){
+            while(resultSet.next()){
+                String name = resultSet.getString("Name");
+                double winRate = resultSet.getDouble("WinRate");
+
+                winRates.getData().add(new XYChart.Data<>(name,winRate));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return winRates;
     }
 }
