@@ -1,7 +1,9 @@
 package com.example.overwatchdata;
 
 import javafx.beans.Observable;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 
 import java.sql.Connection;
@@ -73,5 +75,33 @@ public class DBUtility {
         }
 
         return winRates;
+    }
+
+    public static ObservableList<PieChart.Data> getWinRateForRolesByRank(){
+
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+        String sql = "SELECT Role, SUM(WinRate) AS WinRate\n" +
+                "FROM Heros\n" +
+                "WHERE HeroRank = 'All'\n" +
+                "GROUP BY Role;";
+
+        try(
+                //connecting to DB
+                Connection conn = DriverManager.getConnection(connURL, user, pw);
+                Statement statement = conn.createStatement();
+                //executing sql statement
+                ResultSet resultSet = statement.executeQuery(sql)
+        ){
+            while(resultSet.next()){
+                String role = resultSet.getString("Role");
+                double winRate = resultSet.getDouble("WinRate");
+
+                pieChartData.add(new PieChart.Data(role,winRate));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return pieChartData;
     }
 }
