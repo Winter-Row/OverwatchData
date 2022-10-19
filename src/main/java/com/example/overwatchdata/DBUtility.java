@@ -49,12 +49,12 @@ public class DBUtility {
         return hero;
     }
 
-    public static XYChart.Series<String, Double> getWinRateByRank(){
+    public static XYChart.Series<String, Double> getWinRateForHerosByRank(String rank){
 
         XYChart.Series<String, Double> winRates = new XYChart.Series<>();
         String sql = "SELECT Name, WinRate " +
                 "FROM Heros " +
-                "WHERE HeroRank = 'All' " +
+                "WHERE HeroRank =" + "'" + rank + "' " +
                 "ORDER BY HeroID;";
 
         try(
@@ -77,12 +77,12 @@ public class DBUtility {
         return winRates;
     }
 
-    public static ObservableList<PieChart.Data> getWinRateForRolesByRank(){
+    public static ObservableList<PieChart.Data> getWinRateForRolesByRank(String rank){
 
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
-        String sql = "SELECT Role, SUM(WinRate) AS WinRate\n" +
-                "FROM Heros\n" +
-                "WHERE HeroRank = 'All'\n" +
+        String sql = "SELECT Role, SUM(WinRate) AS WinRate " +
+                "FROM Heros " +
+                "WHERE HeroRank =" + "'" + rank + "' " +
                 "GROUP BY Role;";
 
         try(
@@ -103,5 +103,25 @@ public class DBUtility {
         }
 
         return pieChartData;
+    }
+
+    public static ArrayList<String> getRanks(){
+        ArrayList<String> ranks = new ArrayList<>();
+        String sql = "SELECT HeroRank " +
+                "FROM Heros " +
+                "GROUP BY HeroRank;";
+        try(
+                Connection conn = DriverManager.getConnection(connURL, user, pw);
+                Statement statement = conn.createStatement();
+                ResultSet resultSet = statement.executeQuery(sql)
+        ){
+            while(resultSet.next()){
+                ranks.add(resultSet.getString("HeroRank"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return ranks;
     }
 }
