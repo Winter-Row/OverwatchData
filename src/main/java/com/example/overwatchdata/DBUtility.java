@@ -14,11 +14,11 @@ import java.util.ArrayList;
 
 public class DBUtility {
     //username for sql server
-    private static String user = "root";
+    private static String user = "Hunter1169835";
     //password for sql server
-    private static String pw = "Kubotadog#19";
+    private static String pw = "6MgnNaNjEt";
     //ip port and db name used
-    private static String connURL = "jdbc:mysql://127.0.0.1:3306/overwatch";
+    private static String connURL = "jdbc:mysql://172.31.22.43 /Hunter1169835";
 
     public static ArrayList<Hero> getHerosFromDB(){
 

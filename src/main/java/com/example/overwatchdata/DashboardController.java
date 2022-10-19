@@ -35,6 +35,7 @@ public class DashboardController implements Initializable {
         barChart.setTitle("Hero Win Rates");
         barChart.legendVisibleProperty().setValue(false);
         pieChart.setTitle("Role Win Rates");
+        pieChart.legendVisibleProperty().setValue(false);
 
         rankComboBox.getItems().addAll(DBUtility.getRanks());
         rankComboBox.valueProperty().addListener((obs, oldValue, newValue) ->{

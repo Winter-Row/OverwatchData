@@ -18,31 +18,30 @@ import java.util.ResourceBundle;
 public class DataController implements Initializable {
 
     @FXML
-    private TableColumn<Hero, String> HeroNameCol;
+    private TableColumn<Hero, String> heroNameCol;
 
     @FXML
-    private TableColumn<Hero, String> HeroRankCol;
+    private TableColumn<Hero, String> heroRankCol;
 
     @FXML
-    private TableColumn<Hero, String> RoleCol;
+    private TableColumn<Hero, String> roleCol;
 
     @FXML
-    private TableView<Hero> TableView;
+    private TableView<Hero> tableView;
 
     @FXML
-    private TableColumn<Hero, Double> WinRateCol;
+    private TableColumn<Hero, Double> winRateCol;
 
     private Stage stage;
     private Scene scene;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        HeroNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        HeroRankCol.setCellValueFactory(new PropertyValueFactory<>("heroRank"));
-        RoleCol.setCellValueFactory(new PropertyValueFactory<>("role"));
-        WinRateCol.setCellValueFactory(new PropertyValueFactory<>("winRate"));
-        TableView.getItems().addAll(DBUtility.getHerosFromDB());
-
+        heroNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        heroRankCol.setCellValueFactory(new PropertyValueFactory<>("heroRank"));
+        roleCol.setCellValueFactory(new PropertyValueFactory<>("role"));
+        winRateCol.setCellValueFactory(new PropertyValueFactory<>("winRate"));
+        tableView.getItems().addAll(DBUtility.getHerosFromDB());
     }
 
     @FXML
