@@ -1,7 +1,78 @@
 .root{
     -fx-font-size: 12pt;
-    -fx-background-color: #FF5252;
+    -fx-background-color: linear-gradient(to bottom right,red, #FF5252);
 }
 #header{
     -fx-font-size: 30pt;
+}
+.button{
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-underline: true;
+}
+.button:hover{
+    -fx-text-fill: red;
+}
+.combo-box{
+    -fx-text-fill: white;
+    -fx-background-color: black;
+}
+.combo-box .cell{
+    -fx-text-fill: white;
+    -fx-background-color: black;
+}
+.combo-box .list-view .list-cell:hover{
+    -fx-background-color: red;
+}
+/*Styling for the table found selectors at https://edencoding.com/style-tableview-javafx/ */
+.table-view{
+    -fx-background-color: transparent;
+}
+.table-view .column-header-background .filler {
+    -fx-background-color: black;
+}
+.table-view .corner {
+    -fx-background-color: black;
+}
+.table-view .column-header {
+    -fx-background-color: black;
+}
+.table-view .column-header .label{
+    -fx-text-fill: white;
+}
+.table-view .table-cell{
+    -fx-border-color: transparent;
+}
+.table-cell:even{
+    -fx-background-color: #FF5252;
+    -fx-text-fill: white;
+    -fx-padding: 0.0em;
+
+}
+.table-cell:odd{
+    -fx-background-color: red;
+    -fx-text-fill: white;
+    -fx-padding: 0.0em;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background,
+.table-view .virtual-flow .scroll-bar:horizontal,
+.table-view .virtual-flow .scroll-bar:horizontal .track,
+.table-view .virtual-flow .scroll-bar:horizontal .track-background {
+    -fx-background-color: transparent;
+}
+.table-view .virtual-flow .scroll-bar .increment-button,
+.table-view .virtual-flow .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+}
+.table-view .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color:  black;
+}
+.table-view .virtual-flow .scroll-bar:horizontal .thumb {
+    -fx-background-color:  black;
+}
+.chart-bar{
+    -fx-background-color: linear-gradient(to bottom, #FF5252, black);
 }

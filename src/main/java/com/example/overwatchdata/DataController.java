@@ -37,13 +37,16 @@ public class DataController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //setting column names
         heroNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         heroRankCol.setCellValueFactory(new PropertyValueFactory<>("heroRank"));
         roleCol.setCellValueFactory(new PropertyValueFactory<>("role"));
         winRateCol.setCellValueFactory(new PropertyValueFactory<>("winRate"));
+        //populating table from DB
         tableView.getItems().addAll(DBUtility.getHerosFromDB());
     }
 
+//    action button for changing to dashboard scene
     @FXML
     void changeToDashboard(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Dashboard-view.fxml"));

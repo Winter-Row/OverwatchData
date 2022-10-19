@@ -1,5 +1,9 @@
 package com.example.overwatchdata;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Hero {
     private int heroID;
     private String name, role, heroRank;
@@ -29,7 +33,14 @@ public class Hero {
     }
 
     public void setName(String name) {
-        this.name = name;
+        List<String> names = Arrays.asList("Ana", "Ashe", "Baptiste" , "Bastion" , "Brigitte" , "D.Va" , "Doomfist" ,
+                "Genji" , "Hanzo" , "Junkrat" , "Lúcio" , "McCree" , "Mei" , "Mercy" , "Moira" , "Orisa" , "Pharah" ,
+                "Reaper" , "Reinhardt" , "Roadhog" , "Soldier: 76" , "Sombra" , "Symmetra" , "Torbjörn" , "Tracer" , "Widowmaker" ,
+                "Winston" , "Wrecking Ball" , "Zarya" , "Zenyatta");
+        if(names.contains(name))
+            this.name = name;
+        else
+            throw new IllegalArgumentException("Name must be one of" + names);
     }
 
     public String getRole() {
@@ -37,7 +48,15 @@ public class Hero {
     }
 
     public void setRole(String role) {
-        this.role = role;
+        ArrayList<String> roles = new ArrayList<>();
+        roles.add("TANK");
+        roles.add("SUPPORT");
+        roles.add("DEFENSE");
+        roles.add("OFFENSE");
+        if(roles.contains(role))
+            this.role = role;
+        else
+            throw new IllegalArgumentException("Role must be one of " + roles);
     }
 
     public String getHeroRank() {
@@ -45,7 +64,19 @@ public class Hero {
     }
 
     public void setHeroRank(String heroRank) {
-        this.heroRank = heroRank;
+        ArrayList<String> ranks = new ArrayList<>();
+        ranks.add("All");
+        ranks.add("Bronze");
+        ranks.add("Silver");
+        ranks.add("Gold");
+        ranks.add("Platinum");
+        ranks.add("Diamond");
+        ranks.add("Master");
+        ranks.add("Grandmaster");
+        if(ranks.contains(heroRank))
+            this.heroRank = heroRank;
+        else
+            throw new IllegalArgumentException("Hero rank must be one of " + ranks);
     }
 
     public double getWinRate() {

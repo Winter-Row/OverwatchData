@@ -20,6 +20,10 @@ public class DBUtility {
     //ip port and db name used
     private static String connURL = "jdbc:mysql://172.31.22.43 /Hunter1169835";
 
+    /**
+     * This method returns the heros from the db to be displayed in a table
+     * @return
+     */
     public static ArrayList<Hero> getHerosFromDB(){
 
         ArrayList<Hero> hero = new ArrayList<>();
@@ -32,6 +36,7 @@ public class DBUtility {
             //executing sql statement
             ResultSet resultSet = statement.executeQuery(sql)
         ){
+            //looping over results from query
             while(resultSet.next()){
                 int heroID = resultSet.getInt("HeroID");
                 String name = resultSet.getString("Name");
@@ -49,6 +54,11 @@ public class DBUtility {
         return hero;
     }
 
+    /**
+     * This method gets the win rate and hero's by there rank from the DB to be display in a bar chart
+     * @param rank
+     * @return
+     */
     public static XYChart.Series<String, Double> getWinRateForHerosByRank(String rank){
 
         XYChart.Series<String, Double> winRates = new XYChart.Series<>();
@@ -77,6 +87,11 @@ public class DBUtility {
         return winRates;
     }
 
+    /**
+     * This method gets the win rate for roles by rank from the DB to be displayed in a pie chart
+     * @param rank
+     * @return
+     */
     public static ObservableList<PieChart.Data> getWinRateForRolesByRank(String rank){
 
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
@@ -105,6 +120,10 @@ public class DBUtility {
         return pieChartData;
     }
 
+    /**
+     * getting the ranks from the DB to be display in a combo box
+     * @return
+     */
     public static ArrayList<String> getRanks(){
         ArrayList<String> ranks = new ArrayList<>();
         String sql = "SELECT HeroRank " +

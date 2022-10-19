@@ -32,12 +32,15 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //setting title's and removing legend visibility
         barChart.setTitle("Hero Win Rates");
         barChart.legendVisibleProperty().setValue(false);
         pieChart.setTitle("Role Win Rates");
         pieChart.legendVisibleProperty().setValue(false);
 
+        //populating combo box from DB
         rankComboBox.getItems().addAll(DBUtility.getRanks());
+        //using a listener to get the combo box value and pass it to the methods for getting win rates by rank
         rankComboBox.valueProperty().addListener((obs, oldValue, newValue) ->{
             pieChart.getData().clear();
             barChart.getData().clear();
@@ -47,6 +50,7 @@ public class DashboardController implements Initializable {
         rankComboBox.setValue("All");
     }
 
+    //action button used to change to table scene
     @FXML
     void changeToTableView(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("data-view.fxml"));
